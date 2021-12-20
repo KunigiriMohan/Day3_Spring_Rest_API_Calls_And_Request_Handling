@@ -3,15 +3,13 @@ package com.example.demo.controller;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Greeting;
-import com.example.demo.service.GreetingService;
+import com.example.demo.model.User;
 import com.example.demo.service.IGreetingService;
 
 
@@ -28,20 +26,16 @@ import com.example.demo.service.IGreetingService;
 public class GreetController {
 	public static final String template = "Hello, %s";
 	private final AtomicLong counter = new AtomicLong();
+	
 	@Autowired
 	private IGreetingService greetingService;
 	
-	@GetMapping("/greeting")
-	public Greeting greeting(@RequestParam(value="name",defaultValue="World") String name) {
-		return new Greeting(counter.incrementAndGet() , String.format(template, name));
-	}
-	
-	@GetMapping("/hello")
-	public String hellomessage() {
-		GreetingService greeting = new GreetingService();
+	@PostMapping("greeting/post")
+	public Greeting greeting(@RequestBody User user) {
+		/*User user = new User();
+		user.setFirstName(name);
+		user.setLastName(lastName);*/
+		return greetingService.addGreeting(user);
 		
-		return greeting.getGreetingById();
 	}
-	
-	
 }
