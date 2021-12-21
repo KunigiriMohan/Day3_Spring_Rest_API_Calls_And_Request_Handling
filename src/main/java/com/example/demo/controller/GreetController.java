@@ -32,10 +32,20 @@ public class GreetController {
 	@Autowired
 	private IGreetingService greetingService;
 	
+	/**
+	 * API for Adding message to Repository
+	 * @param user
+	 * @return
+	 */
 	@PostMapping("/post")
 	public Greeting greeting(@RequestBody User user) {
 		return greetingService.addGreeting(user);
 	}
+	/**
+	 * API for returning message by Id
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/get/Id/{id}")
 	public Greeting gretting2(@PathVariable Long id){
 		return greetingService.getGreetingById(id);
