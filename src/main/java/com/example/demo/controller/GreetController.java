@@ -1,13 +1,11 @@
 package com.example.demo.controller;
 
-import java.util.concurrent.atomic.AtomicLong;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.model.Greeting;
 import com.example.demo.model.User;
 import com.example.demo.service.IGreetingService;
@@ -25,17 +23,12 @@ import com.example.demo.service.IGreetingService;
 @RestController
 public class GreetController {
 	public static final String template = "Hello, %s";
-	private final AtomicLong counter = new AtomicLong();
 	
 	@Autowired
 	private IGreetingService greetingService;
 	
-	@PostMapping("greeting/post")
+	@PostMapping("/greeting/post")
 	public Greeting greeting(@RequestBody User user) {
-		/*User user = new User();
-		user.setFirstName(name);
-		user.setLastName(lastName);*/
 		return greetingService.addGreeting(user);
-		
 	}
 }
