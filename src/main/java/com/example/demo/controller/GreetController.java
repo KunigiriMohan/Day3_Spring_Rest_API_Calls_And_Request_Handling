@@ -35,20 +35,37 @@ public class GreetController {
 	@Autowired
 	private IGreetingService greetingService;
 	
+	/**
+	 * API for Adding message to Repository
+	 * @param user
+	 * @return
+	 */
 	@PostMapping("/post")
 	public Greeting greeting(@RequestBody User user) {
 		return greetingService.addGreeting(user);
 	}
+	/**
+	 * API for returning message by Id
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/get/Id/{id}")
 	public Greeting gretting2(@PathVariable Long id){
 		return greetingService.getGreetingById(id);
 	}
-
+	/**
+	 * API for getting all values in Repository
+	 * @return
+	 */
 	@GetMapping("/get/all")
 	public List<Greeting> grettingAll(){
 		return greetingService.getGreetingALL();
 	}
-
+	/**
+	 * API for delete value by Id
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/get/delete/id/{id}")
 	public List<Greeting> deleteGreeting(@PathVariable Long id){
 		return greetingService.deletebyID(id);
