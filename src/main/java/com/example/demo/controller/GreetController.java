@@ -40,6 +40,7 @@ public class GreetController {
 
 	@Autowired
 	private GreatingRepository greetingRepository;
+
 	/**
 	 * API for Adding message to Repository
 	 * @param user
