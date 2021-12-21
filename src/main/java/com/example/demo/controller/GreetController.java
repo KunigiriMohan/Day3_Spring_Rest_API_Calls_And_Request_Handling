@@ -48,4 +48,10 @@ public class GreetController {
 	public List<Greeting> grettingAll(){
 		return greetingService.getGreetingALL();
 	}
+
+	@GetMapping("/get/delete/id/{id}")
+	public List<Greeting> deleteGreeting(@PathVariable Long id){
+		return greetingService.deletebyID(id);
+	}
+	
 }
