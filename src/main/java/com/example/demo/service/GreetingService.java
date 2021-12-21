@@ -1,9 +1,12 @@
 package com.example.demo.service;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import net.bytebuddy.asm.Advice.AllArguments;
 
 import com.example.demo.model.Greeting;
 import com.example.demo.model.User;
@@ -32,6 +35,11 @@ public class GreetingService implements IGreetingService {
 	@Override
 	public Greeting getGreetingById(long Id) {
 		return greetingRepository.findById(Id).get();
+	}
+
+	@Override
+	public List<Greeting> getGreetingALL() {
+		return greetingRepository.findAll();
 	}
 		
 }

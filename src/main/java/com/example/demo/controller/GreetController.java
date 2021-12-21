@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
 import com.example.demo.model.Greeting;
 import com.example.demo.model.User;
 import com.example.demo.service.IGreetingService;
@@ -49,5 +52,13 @@ public class GreetController {
 	@GetMapping("/get/Id/{id}")
 	public Greeting gretting2(@PathVariable Long id){
 		return greetingService.getGreetingById(id);
+	}
+	/**
+	 * API for getting all values in Repository
+	 * @return
+	 */
+	@GetMapping("/get/all")
+	public List<Greeting> grettingAll(){
+		return greetingService.getGreetingALL();
 	}
 }
