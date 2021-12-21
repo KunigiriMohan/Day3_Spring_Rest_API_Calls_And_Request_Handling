@@ -3,8 +3,6 @@ package com.example.demo.model;
 
 /**
  * UserClass for defining first name and last name
- * 
- *
  */
 public class User {
 
