@@ -10,6 +10,7 @@ import net.bytebuddy.asm.Advice.AllArguments;
 
 import com.example.demo.model.Greeting;
 import com.example.demo.model.User;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.example.demo.Repository.GreatingRepository;
 /**
  * 
@@ -39,6 +40,14 @@ public class GreetingService implements IGreetingService {
 
 	@Override
 	public List<Greeting> getGreetingALL() {
+		return greetingRepository.findAll();
+	}
+
+	
+
+	@Override
+	public List<Greeting> deletebyID(Long Id) {
+		greetingRepository.deleteById(Id);
 		return greetingRepository.findAll();
 	}
 		

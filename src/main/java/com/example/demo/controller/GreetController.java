@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import com.example.demo.Repository.GreatingRepository;
 import com.example.demo.model.Greeting;
 import com.example.demo.model.User;
 import com.example.demo.service.IGreetingService;
@@ -25,6 +27,7 @@ import com.example.demo.service.IGreetingService;
  * @RequestParam : Requesting Parameter in URL.
  * @PathVariable : to get value from URL of a Variable.
  * @GetMapping : to map URL to Particular API
+ * @PuttMapping : to update values in repository
  *
  */
 @RestController
@@ -34,7 +37,10 @@ public class GreetController {
 	
 	@Autowired
 	private IGreetingService greetingService;
-	
+
+	@Autowired
+	private GreatingRepository greetingRepository;
+
 	/**
 	 * API for Adding message to Repository
 	 * @param user
@@ -60,5 +66,23 @@ public class GreetController {
 	@GetMapping("/get/all")
 	public List<Greeting> grettingAll(){
 		return greetingService.getGreetingALL();
+	}
+	/**
+	 * API for delete value by Id
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/get/delete/id/{id}")
+	public List<Greeting> deleteGreeting(@PathVariable Long id){
+		return greetingService.deletebyID(id);
+	}
+	/**
+	 * API for updating value by Id
+	 * @param greetingObj
+	 * @return
+	 */
+	@PutMapping("/update/")
+	public Greeting update(@RequestBody Greeting greetingObj){
+		return greetingRepository.save(greetingObj);
 	}
 }
