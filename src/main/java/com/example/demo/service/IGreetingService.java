@@ -14,5 +14,5 @@ public interface IGreetingService {
 	Greeting addGreeting(User user);
 	Greeting getGreetingById(long Id);
 	List<Greeting> getGreetingALL();
-	List<Greeting> deletebyID(Long Id);
+	Greeting saveUpdate(Greeting greetingObj)
 }
