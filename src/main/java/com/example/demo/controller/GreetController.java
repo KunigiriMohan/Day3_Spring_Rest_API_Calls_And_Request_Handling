@@ -37,14 +37,41 @@ public class GreetController {
 	 * @param user
 	 * @return
 	 */
+	/**
+	 * API to Show Greeting Message by sending name as a parameter
+	 * @param name
+	 * @return : Json object with message id and message.
+	 */
+	@GetMapping("/getmessage/")
+	public Greeting greeting(@RequestParam(value="name",defaultValue="World") String name) {
+		return new Greeting(counter.incrementAndGet() , String.format(template, name));
+	}
+	
+	/**
+	 * API to show Greeting message by sending name as pathvariable
+	 * @param name
+	 * @return : Greeting message in Json with id and message.
+	 */
+	
+	@GetMapping ("/param/{name}")
+	public Greeting greeting2(@PathVariable String name) {
+		return new Greeting(counter.incrementAndGet() , String.format(template, name));	
+	}
+	
+	/**
+	 * API for Adding message to Repository
+	 * @param user
+	 * @return creted user Object
+	 */
 	@PostMapping("/post")
 	public Greeting greeting(@RequestBody User user) {
 		return greetingService.addGreeting(user);
 	}
+	
 	/**
 	 * API for returning message by Id
 	 * @param id
-	 * @return
+	 * @return : Greeting message of particular id
 	 */
 	@GetMapping("/get/Id/{id}")
 	public Greeting gretting2(@PathVariable Long id){
